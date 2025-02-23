@@ -1,20 +1,15 @@
-// import { GeoJSON } from 'react-leaflet/GeoJSON';
-import { MapContainer } from 'react-leaflet/MapContainer';
-import { TileLayer } from 'react-leaflet/TileLayer';
-import 'leaflet/dist/leaflet.css';
-import React from 'react';
-import { GeoJSON } from 'react-leaflet';
-// import L, { divIcon } from 'leaflet';
-// import PropTypes from 'prop-types'
-import useFetch from './hooks/useFetch';
-import { Loading } from './components/Loading';
-import { Error } from './components/Error';
-import { renderToString } from 'react-dom/server';
-import { MapPopup } from './components/map/MapPopup';
+import { MapContainer } from 'react-leaflet/MapContainer'
+import { TileLayer } from 'react-leaflet/TileLayer'
+import 'leaflet/dist/leaflet.css'
+import React from 'react'
+import { GeoJSON } from 'react-leaflet'
+import useFetch from './hooks/useFetch'
+import { Loading } from './components/Loading'
+import { Error } from './components/Error'
+import { renderToString } from 'react-dom/server'
+import { MapPopup } from './components/map/MapPopup'
 
 function App() {
-  // const [selectedNeighborhoodId, setSelectedNeighborhoodId] = React.useState()
-
   const { data: geojson, error: geojsonError, loading: geojsonLoading } = useFetch('/bairros-geojson')
   const { data: populationList, error: neighborhoodError, loading: neighborhoodsLoading } = useFetch('/populacao')
 
@@ -28,7 +23,7 @@ function App() {
     let popupContent = renderToString(<MapPopup neighborhoodName={neighborhoodName} populationData={populationData} />)
 
 
-    layer.bindPopup(popupContent);
+    layer.bindPopup(popupContent)
   }, [populationList])
 
   const loading = geojsonLoading || neighborhoodsLoading
@@ -56,7 +51,7 @@ function App() {
         />
       </MapContainer>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
